@@ -20,5 +20,20 @@ email_domain_options = ['@gmail.com', '@aol.com', '@yahoo.com', '@hotmail.com']
 age_distribution = np.random.normal(67, 21, num_rows)
 salary_distribution = np.random.normal(120000, 52000, num_rows)
 
+data = []
+
+# Assign Random Row Data, Store in Data List
+for i in range(num_rows):
+    random_gender = random.choice(gender_options)
+    random_state = random.choice(state_options)
+    random_profession = random.choice(profession_options)
+    
+    # Using Male vs Female Names
+    if random_gender == 'Male':
+        random_first_name = random.choice(first_name_options_male)
+    else:
+        random_first_name = random.chocice(first_name_options_female)
+
+    random_last_name = random.choice(last_name_options)
 
 
