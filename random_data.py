@@ -13,12 +13,8 @@ state_options = ['Alabama', 'California', 'Florida', 'New Jersey', 'Maine', 'Ida
 profession_options = ['Teacher', 'Software Developer', 'Super Hero', 'Chef', 'Police Officer', 'Business Analyst', 'Accountant', 'Construction Worker', 'Professional Athlete', 'Doctor', 'Personal Trainer', 'Insurance Rep', 'Bank Teller']
 first_name_options_male = ['Mike', 'Richie', 'Deven', 'Casey', 'Bruce', 'Steve', 'Jason', 'James', 'Wally', 'Pablo']
 first_name_options_female = ['Steph', 'Tara', 'Corey', 'Alyssa', 'Wanda', 'Jane', 'Natasha', 'Carol', 'Diana']
-last_name_options = ['Banner', 'Rogers', 'Maximoff', 'Jordan', 'Bradley Jr', 'Montana', 'Soprano', 'Jones', 'Brown', 'Malone', 'Stockton', 'Capone']
+last_name_options = ['Banner', 'Rogers', 'Maximoff', 'Jordan', 'Ragnarsson', 'Montana', 'Soprano', 'Jones', 'Brown', 'Malone', 'Stockton', 'Capone']
 email_domain_options = ['@gmail.com', '@aol.com', '@yahoo.com', '@hotmail.com']
-
-# Using NumPy to Set Age Range / Salary Range and draw random samples from normal distribution
-age_distribution = np.random.normal(67, 21, num_rows)
-salary_distribution = np.random.normal(120000, 52000, num_rows)
 
 data = []
 
@@ -32,8 +28,21 @@ for i in range(num_rows):
     if random_gender == 'Male':
         random_first_name = random.choice(first_name_options_male)
     else:
-        random_first_name = random.chocice(first_name_options_female)
+        random_first_name = random.choice(first_name_options_female)
 
     random_last_name = random.choice(last_name_options)
+    random_name = random_first_name + ' ' + random_last_name
+    random_email = random_first_name[0].lower() + random_last_name.lower() + random.choice(email_domain_options)
+    random_age = random.randint(21, 67)
+    random_salary = random.randint(52000, 120000)
+
+    row = [random_name, random_email, random_age, random_gender, random_state, random_profession, random_salary]
+
+    # Store each row in data list
+    data.append(row)
+
+df = pd.DataFrame(data, columns=['Name', 'Email', 'Age', 'Gender', 'State', 'Profession', 'Salary'])
+print(df)
+df.to_csv(filename, index=False)
 
 
