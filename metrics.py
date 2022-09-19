@@ -3,6 +3,20 @@ import numpy as np
 
 data = pd.read_csv('randomdata.csv')
 
+
+# Search function
+def search(data, column, search_term):
+    # If we are searching by age, we need to use int
+    if column == 'Age':
+        search_term = int(search_term)
+
+    indexes = data.loc[data[column].isin([search_term])].index
+    if indexes.size > 0:
+        # Select a value that belongs to this particular data frame
+        return data.iloc[indexes]
+    else:
+        return []
+
 # Funtion to calculate % of male vs females
 def gender_distribution(data, column_name):
     
@@ -28,7 +42,7 @@ def gender_distribution(data, column_name):
 
     return df
 
-# print(gender_distribution(data, 'Gender'))
+
 
 # Function to show salary based on profession
 def salary_distribution(data, key_variable, value_variable):
@@ -54,4 +68,4 @@ def salary_distribution(data, key_variable, value_variable):
 
     return df
 
-print(salary_distribution(data, 'Profession', 'Salary'))
+

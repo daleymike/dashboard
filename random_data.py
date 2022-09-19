@@ -32,7 +32,7 @@ for i in range(num_rows):
 
     random_last_name = random.choice(last_name_options)
     random_name = random_first_name + ' ' + random_last_name
-    random_email = random_first_name[0].lower() + random_last_name.lower() + random.choice(email_domain_options)
+    random_email = random_first_name[0].lower() + random_last_name.lower() + str(random.randint(1, 99)) + random.choice(email_domain_options)
     random_age = random.randint(21, 67)
     random_salary = random.randint(52000, 120000)
 

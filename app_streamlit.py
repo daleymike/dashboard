@@ -29,7 +29,33 @@ def pie_chart(df):
 st.markdown("<h1 style='text-align: center; color: white;'>My Dashboard</h1>", unsafe_allow_html=True)
 st.markdown('***')
 
-buffer, col2, col3, col3 = st.columns([1,7,7,7])
+# Search Box
+buffer, col2, col3 = st.columns([1,5,15])
+
+with col2:
+    key = st.selectbox("Key", ['Name', 'Email', 'Age', 'Gender', 'State', 'Profession', 'Salary' ])
+
+# Set input to search, use title case, use search function to get data
+with col3:
+    search_term = st.text_input("Search")
+    search_term = search_term.title()
+    if key != '' and search_term != '':
+        df = search(data, key, search_term)
+
+buffer, col2 = st.columns([1,20])
+
+# Display search results
+with col2:
+    if len(df) < 1 and len(search_term) > 0:
+        st.write("Did not find any matches.")
+    elif not df.empty:
+        st.dataframe(df)
+    else:
+        st.write('')
+    
+
+st.markdown('***')
+buffer, col2, buffer, col3, buffer = st.columns([1,7, 1, 7, 1])
 
 # Use gender dist function to display % male and female
 with col2:
